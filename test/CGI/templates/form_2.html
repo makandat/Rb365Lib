@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>フォーム(2)</title>
+  <link rel="stylesheet" href="/css/default.css" />
+  <style>
+   .msg {
+     text-align:center;
+     color:magenta;
+     padding:10px;
+   }
+   .form_row {
+     margin-bottom: 6px;
+   }
+   button[type="submit"] {
+     background-color: lime;
+     height: 32px;
+     border-radius :4px;
+   }
+   input[type="text"] {
+     height: 26px;
+     border-radius: 5px;
+   }
+   form {
+     margin-left:25%;
+     margin-top:36px;
+   }
+  </style>
+</head>
+
+<body>
+<h1>フォームのテスト(2)</h1>
+<div class="menu" style="text-align:center;"><a href="/cgi">BACK</a></div>
+
+<form method="POST">
+<div class="form_row"><label><input type="checkbox" name="check1" value="0" />&nbsp;check1</label></div>
+<div class="form_row"><label><input type="radio" name="radio" value="1" checked />radio1</label>
+<label><input type="radio" name="radio" value="2" />radio2</label></div>
+<div class="form_row"><select name="select">
+ <option value="0" selected>並み</option>
+ <option value="1">大盛</option>
+ <option value="2">特盛</option>
+</select></div>
+<div class="form_row"><button type="submit">送信</button></div>
+</form>
+<br />
+<p class="msg">(*message*)</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

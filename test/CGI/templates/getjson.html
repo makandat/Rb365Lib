@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja-jp">
+<head>
+<meta charset="utf-8" />
+<title>getjson 複素数の曲形式</title>
+<script src="/js/jquery.min.js"></script>
+<script>
+$(function() {
+  $('#button1').click(function() {
+    complex = $('#complex').val();
+    $.getJSON('/cgi-bin/Ruby/complex.cgi', {"complex":complex}, function(data) { $('#result').text(data); });
+  });
+});
+</script>
+<style>
+  a:link, a:visited {
+    text-decoration: none;
+    color:red;
+  }
+  input[type="button"] {
+    background-color:lime;
+    height:32px;
+    border-radius:5px;
+  }
+</style>
+</head>
+
+<body style="margin-left:5%;margin-right:5%">
+<h1 style="text-align:center;color:deeppink;padding:10px;">複素数の曲形式 (complex.cgi)</h1>
+<p style="text-align:center"><a href="/cgi">HOME</a></p>
+<br />
+<p style="margin-left:25%;margin-bottom:20px;">複素数の極形式を返す。</p>
+<form method="POST" style="margin-left:25%;>
+<div>
+<label for="complex">複素数(a+bj)　</label><input type="text" name="complex" id="complex" value="1+2j" />
+</div>
+<br />
+<div><input type="button" id="button1" value="変換する" /></div>
+</form>
+<br />
+<p id="result" style="text-align:center;color:blue;"></p>
+<p>&nbsp;</p>
+</body>
+</html>

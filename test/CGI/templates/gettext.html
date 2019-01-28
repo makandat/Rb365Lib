@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja-jp">
+<head>
+<meta charset="utf-8" />
+<title>gettext 華氏温度</title>
+<script src="/js/jquery.min.js"></script>
+<script>
+  function btnclick() {
+    var text1 = $('#text1').val();
+    var temp = $('input[name="temp"]:checked').val();
+    $.get('/cgi-bin/Ruby/fahren.cgi',
+     {"text1":text1, "temp":temp}, 
+     function(data) { $('#message').text(data); });
+  }
+</script>
+<style>
+  a:link, a:visited {
+    text-decoration: none;
+    color: red;
+  }
+  input[type="button"] {
+    background-color: lime;
+    height: 32px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+
+<body style="margin-left:5%;margin-right:5%">
+<h1 style="text-align:center;color:deeppink;">華氏温度 (fahren.cgi)</h1>
+<p style="text-align:center;"><a href="/cgi">HOME</a></p>
+<br />
+<form method="POST" style="margin-left:25%;">
+<div style="margin-bottom:15px;">
+<label for="text1">温度　</label><input type="text" name="text1" id="text1" value="32.0" />
+</div>
+<div style="margin-bottom:18px;">
+ <label><input type="radio" name="temp" value="C" checked="checked" /> 華氏温度へ</label>
+ <label><input type="radio" name="temp" value="F" /> 摂氏温度へ</label>
+</div>
+<div><input type="button" value=" 変換する " id="btnConvert" onclick="btnclick();" /></div>
+</form>
+<br />
+<p id="message" style="text-align:center;color:blue;">
+(*message*)
+</p>
+<p>&nbsp;</p>
+</body>
+</html>

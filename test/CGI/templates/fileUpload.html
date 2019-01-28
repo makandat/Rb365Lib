@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8" />
+ <title>ファイルアップロード</title>
+ <link rel="stylesheet" href="/css/default.css" />
+ <style>
+  .form-row {
+     margin-bottom:10px;
+   }
+  .msg {
+      text-align:center;
+      color:magenta;
+    }
+  button {
+      border-radius:5px;
+      background-color:lime;
+      height:32px;
+   }
+ </style>
+</head>
+
+<body>
+<h1>ファイルアップロード</h1>
+<div class="menu" style="text-align:center;"><a href="/cgi">BACK</a></div>
+<br />
+<form method="POST" enctype="multipart/form-data" style="margin-left:20%;">
+<div class="form-row">
+ <label>ファイル選択： <input type="file" name="fileName" /></label>
+</div>
+<div class="form-row"><button type="submit">アップロード</button></div>
+</form>
+<br />
+<p class="msg">(*message*)</p>
+</body>
+</html>
