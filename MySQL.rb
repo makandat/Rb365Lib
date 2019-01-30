@@ -2,7 +2,7 @@
 =begin
 
   MySQL.rb MySQL クラス
-     Ver. 1.00  2019-01-24
+     Ver. 1.01  2019-01-30
 
 =end
 
@@ -31,14 +31,18 @@ class MySQL
       File.open(APPCONF, "r") {|f|
         f.each_line {|line|
           line.strip!
-          ps = line.split('=')
-          if ps.size() == 2 then
-            key = ps[0].strip
-            value = ps[1].strip
-            @userid = key == 'uid' ? ps[1] : @userid
-            @password = key == 'pwd' ? ps[1] : @password
-            @database = key == 'db' ? ps[1] : @database
-            @host = key == 'host' ? ps[1] : @host
+          if line[0] == '#' or line[0] == '[' then
+            next
+          else
+            ps = line.split('=')
+            if ps.size() == 2 then
+              key = ps[0].strip
+              value = ps[1].strip
+              @userid = key == 'uid' ? ps[1] : @userid
+              @password = key == 'pwd' ? ps[1] : @password
+              @database = key == 'db' ? ps[1] : @database
+              @host = key == 'host' ? ps[1] : @host
+            end
           end
         }
       }

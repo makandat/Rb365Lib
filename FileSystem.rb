@@ -6,12 +6,11 @@
 
 =end
 
-require 'FileUtils'
-require 'FileTest'
-require 'Etc'
-require 'Tempfile'
-require 'Csv'
-require 'JSON'
+require 'fileutils'
+require 'etc'
+require 'tempfile'
+require 'csv'
+require 'json'
 
 
 #
@@ -84,6 +83,7 @@ def self.readIni(filePath, encoding='utf-8')
         key = ps[0].strip
         value = ps[1].strip
         result[key] = value
+      end
     end
   }
   return result
@@ -101,6 +101,10 @@ def self.move(src, dest)
   FileUtils.move(src, dest)
 end
 
+# ファイルの属性を変更する。
+def self.chmod(filePath, mode)
+  FileUtils.chmod(mode, filePath)
+end
 
 # ファイルやリンクを削除する。
 def self.unlink(filePath)
@@ -184,6 +188,7 @@ def self.listFiles(dirPath, wildcard="*")
   Dir.glob(dirPath + "/" + wildcard).each{|e|
     if FileTest.file?(e) then
       result.push(e)
+    end
   }
   return result
 end
@@ -195,6 +200,7 @@ def self.listDirectories(dirPath)
   Dir.glob(dirPath + "/" + wildcard).each{|e|
     if FileTest.directory?(e) then
       result.push(e)
+    end
   }
   return result
 end
@@ -281,7 +287,7 @@ end
 
 
 # データ(オブジェクト)を JSON 文字列に変換してファイル保存する。
-def writeJson(filePath, data)
+def self.writeJson(filePath, data)
   JSON.unparse(data)
 end
 

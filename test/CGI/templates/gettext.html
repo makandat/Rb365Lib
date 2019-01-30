@@ -9,7 +9,7 @@
     var text1 = $('#text1').val();
     var temp = $('input[name="temp"]:checked').val();
     $.get('/cgi-bin/Ruby/fahren.cgi',
-     {"text1":text1, "temp":temp}, 
+     {"text1":text1, "temp":temp},
      function(data) { $('#message').text(data); });
   }
 </script>

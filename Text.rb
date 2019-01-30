@@ -2,11 +2,10 @@
 =begin
 
   Text.rb テキストモジュール
-     Ver. 0.10
+
+     Ver. 1.00  2019-01-29
 
 =end
-
-require 'regexp'
 
 
 # Text モジュール

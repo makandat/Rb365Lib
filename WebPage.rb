@@ -2,7 +2,7 @@
 =begin
 
   WebPage.rb WebPage クラス
-     Ver. 0.50
+     Ver. 1.00  2019-01-30
 
 =end
 
@@ -58,11 +58,15 @@ class WebPage
     File.open(APPCONF, "r") {|f|
       f.each_line {|line|
         line.strip!
-        ps = line.split('=')
-        if ps.size() == 2 then
-          key = ps[0].strip
-          value = ps[1].strip
-          @conf[key] = value
+        if line[0] == '#' or line[0] == '[' then
+          next
+        else
+          ps = line.split('=')
+          if ps.size() == 2 then
+            key = ps[0].strip
+            value = ps[1].strip
+            @conf[key] = value
+          end
         end
       }
     }

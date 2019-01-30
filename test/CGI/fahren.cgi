@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env ruby
 #  華氏温度と摂氏温度変換 fahren.cgi
 require './WebPage.rb'
+require 'logger'
 
 class MyPage < WebPage
-  def initialize(template)
+  def initialize(template="")
     super(template)
     t = getParam('text1').to_f
     fahren = getParam('temp')
@@ -16,6 +17,7 @@ class MyPage < WebPage
     end
     MyPage.sendText(ct.to_s)
   end
+end
 
 MyPage.new
 
