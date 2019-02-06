@@ -2,7 +2,7 @@
 =begin
 
   FileSystem.rb ファイル関連モジュール
-     Ver. 0.10
+     Ver. 1.00
 
 =end
 

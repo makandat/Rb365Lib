@@ -50,7 +50,7 @@ htmlcode = <<-EOS
 $(function() {
   $('button').click(function() {
     text1 = $('input[name="text1"]').val();
-    $.getJSON('/cgi-bin/B/ajax_B.cgi', {"text1":text1}, function(data) { $('#result').text(data['text1']); });
+    $.getJSON('/cgi-bin/project_name/ajax_project_name.cgi', {"text1":text1}, function(data) { $('#result').text(data['text1']); });
   });
 });
  </script>
@@ -75,7 +75,7 @@ EOS
 # AJAX CGI
 ajaxfile = <<-EOS
 #!/usr/bin/env ruby
-require "WebPage"
+require "./WebPage.rb"
 
 class AjaxResponse < WebPage
   # コンストラクタ
@@ -104,8 +104,8 @@ EOS
 
 # ユーザに質問
 Common.esc_print(ESC_FG_CYAN + ESC_BOLD, "\nRb365 AJAX/CGI ウィザード (ruby v2.5 以上が必要)\n")
-copy_modules = Common.readline("Q1 Rb365Lib モジュールをインストール先にコピーしますか？ (y/n) ")
-use_mysql = Common.readline("Q2 MySQL を使用しますか？ (y/n) ")
+copy_modules = true  # Common.readline("Q1 Rb365Lib モジュールをインストール先にコピーしますか？ (y/n) ")
+use_mysql = true  # Common.readline("Q2 MySQL を使用しますか？ (y/n) ")
 project_name = Common.readline("Q3 プロジェクトの名前を入力します。(半角英字・数字、_ のみとする) ")
 if project_name == "" then
   project_name = "CGIMain"
@@ -122,20 +122,6 @@ end
 
 # ユーザに条件を確認
 puts
-if copy_modules == "y" then
-  puts "Rb365Lib モジュールをコピーする。"
-  copy_modules = true
-else
-  puts "Rb365Lib モジュールをコピーしない。"
-  copy_modules = false
-end
-if use_mysql == "y" then
-  puts "MySQL モジュールを使用する。"
-  use_mysql = true
-else
-  puts "MySQL モジュールを使用しない。"
-  use_mysql = false
-end
 puts "プロジェクト名 %s" % project_name
 puts "インストール先のフォルダ %s" % parent_folder
 
@@ -184,17 +170,7 @@ begin
     lines = progcode.split("\n")
     lines.each {|line|
       line.gsub!("project_name", project_name)
-      if use_mysql then
-        f.puts line
-        #puts line
-      else
-        if line =~ /MySQL/ then
-          # pass
-        else
-          f.puts line
-          #puts line
-        end
-      end
+      f.puts line
     }
   }
 
@@ -207,7 +183,7 @@ begin
   File.open(filePath2, "w") {|f|
     lines = htmlcode.split("\n")
     lines.each {|line|
-      line.gsub!('CGIWiz', project_name)
+      line.gsub!('project_name', project_name)
       f.puts line
     }
   }
@@ -231,7 +207,7 @@ begin
   end
 
   # 終了メッセージ
-  Common.esc_print("green", "成功しました。AppConf.ini の内容を編集してください。")
+  Common.esc_print("green", "成功しました。\nAppConf.ini の内容を編集してください。\nCGI のパスは #{parent_folder}/#{project_name} です。")
 
   # parent_folder.txt を更新する。
   File.open("parent_folder.txt", "w") {|f|

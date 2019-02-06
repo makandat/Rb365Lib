@@ -2,7 +2,7 @@
 =begin
 
   Common.rb 共通モジュール
-     Ver. 0.10
+     Ver. 1.00
 
 =end
 
@@ -59,7 +59,7 @@ module Common
   end
 
   # プログラムを終了(中止)する。
-  def self.stop(code, message, color="red")
+  def self.stop(code, message)
     puts message
     exit code
   end
