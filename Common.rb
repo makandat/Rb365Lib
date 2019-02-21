@@ -48,9 +48,23 @@ module Common
     @@logger = Logger.new(filePath)
   end
 
-  # コマンドライン引数(配列)を返す。
-  def args()
-    return ARGV
+  # Assert
+  def Assert(expr, message)
+    if expr then
+      # next
+    else
+      puts message;
+      exit 1
+    end
+  end
+
+  # コマンドライン引数(引数が負のときは配列)を返す。
+  def args(i = -1)
+    if i < 0 then
+      return ARGV
+    else
+      return ARGV[i]
+    end
   end
 
   # コマンドライン引数の数
@@ -189,6 +203,7 @@ module Common
   # モジュール関数を公開
   module_function :count_args
   module_function :args
+  module_function :Assert
   module_function :readline
   module_function :get_env
   module_function :is_windows
