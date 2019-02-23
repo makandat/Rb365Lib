@@ -2,7 +2,7 @@
 =begin
 
   FileSystem.rb ファイル関連モジュール
-     Ver. 1.00
+     Ver. 1.01
 
 =end
 
@@ -258,6 +258,10 @@ def self.getTempFile()
   Tempfile.new
 end
 
+# ホームディレクトリを返す。
+def getHome()
+  ENV['HOME']
+end
 
 # 指定したパスの拡張子を変更する。
 def self.changeExt(filePath, ext)
