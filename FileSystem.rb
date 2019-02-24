@@ -2,8 +2,7 @@
 =begin
 
   FileSystem.rb ファイル関連モジュール
-     Ver. 1.01
-
+     Ver. 1.02
 =end
 
 require 'fileutils'
@@ -111,6 +110,10 @@ def self.unlink(filePath)
   FileUtils.safe_unlink(filePath)
 end
 
+# シンボリックリンクを作成する。
+def self.createSymlink(src, dest)
+  FileUtils.ln_s(src, dest)
+end
 
 # ファイルやディレクトリが存在する場合は、true を返す。
 def self.exists(filePath)
@@ -259,7 +262,7 @@ def self.getTempFile()
 end
 
 # ホームディレクトリを返す。
-def getHome()
+def self.getHome()
   ENV['HOME']
 end
 
