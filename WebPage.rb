@@ -2,7 +2,7 @@
 =begin
 
   WebPage.rb WebPage クラス
-     Ver. 1.00  2019-01-30
+     Ver. 1.00  2019-04-01
 
 =end
 
@@ -109,6 +109,16 @@ class WebPage
   # ポストバックか？
   def isPostback()
     @params.size() > 0
+  end
+
+  # プレースホルダを設定する。
+  def setPlaceHolder(key ,value)
+    @vars[key] = value
+  end
+
+  # プレースホルダの値を得る。
+  def getPlaceHolder(key)
+    return @vars[key]
   end
 
   # クッキーがあるか？
